@@ -6,6 +6,21 @@
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
 
 from scrapy import signals
+import base64
+
+
+class ProxyMiddleware(object):
+    def __init__(self):
+        self.proxyServer = 'http://http-dyn.abuyun.com:9020'
+        self.proxyUser = 'H3LSLO1JV15947BD'
+        self.proxyPass = '8A703A7E5927AE98'
+        self.proxyAuth = "Basic " + base64.urlsafe_b64encode(bytes((self.proxyUser + ":" + self.proxyPass), "ascii"))\
+            .decode("utf8")
+
+    def process_request(self, request, spider):
+        request.meta["proxy"] = self.proxyServer
+        request.headers["Proxy-Authorization"] = self.proxyAuth
+        # request.headers['Proxy-Switch-Ip'] = 'yes'
 
 
 class ItjuziSpiderMiddleware(object):

@@ -56,9 +56,10 @@ ROBOTSTXT_OBEY = False
 
 # Enable or disable downloader middlewares
 # See https://doc.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
-#    'itjuzi.middlewares.ItjuziDownloaderMiddleware': 543,
-#}
+DOWNLOADER_MIDDLEWARES = {
+   # 'itjuzi.middlewares.ItjuziDownloaderMiddleware': 543,
+   'itjuzi.middlewares.ProxyMiddleware': 1
+}
 
 # Enable or disable extensions
 # See https://doc.scrapy.org/en/latest/topics/extensions.html
@@ -96,5 +97,5 @@ ITEM_PIPELINES = {
 REDIRECT_ENALBED = False
 
 AUTOTHROTTLE_ENABLED = True
-AUTOTHROTTLE_START_DELAY = 0.1  # 初始下载延迟
-DOWNLOAD_DELAY = 0.1  # 每次请求间隔时间
+AUTOTHROTTLE_START_DELAY = 0.2  # 初始下载延迟
+DOWNLOAD_DELAY = 0.2  # 每次请求间隔时间
